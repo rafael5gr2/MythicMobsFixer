@@ -1,0 +1,7 @@
+main: me.rafael5gr2.mythicmobsfixer.MythicMobsFixer
+name: MythicMobsFixer
+version: ${pluginVersion}
+description: ${pluginDescription}
+api-version: 1.19
+authors: [ rafael5gr2 ]
+depend: [ MythicMobs ]
