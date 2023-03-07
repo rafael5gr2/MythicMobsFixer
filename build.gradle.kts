@@ -4,7 +4,7 @@ plugins {
 
 group = "me.rafael5gr2.mythicmobsfixer"
 val pluginVersion = "1.0.0"
-val pluginDescription = "A simple plugin that fixes bugs from MythicMobs."
+val pluginDescription = "A simple plugin to fix issues with MythicMobs."
 version = pluginVersion
 
 repositories {
