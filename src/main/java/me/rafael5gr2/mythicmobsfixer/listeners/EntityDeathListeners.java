@@ -169,10 +169,21 @@ public class EntityDeathListeners implements Listener {
             );
             this.knownMythicMobs.remove(uuid);
         } else {
+            livingEntity.setNoDamageTicks(20);
+            livingEntity.setFireTicks(0);
+            livingEntity.getActivePotionEffects().clear();
+            final AttributeInstance genericMaxHealth = livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+            if (genericMaxHealth != null) {
+                event.setReviveHealth(genericMaxHealth.getValue() >= 10 ? 10 : genericMaxHealth.getValue());
+            }
+            event.setCancelled(true);
             mythicMobsFixer.getComponentLogger().info(
                     Component.text(
-                            "DEBUG(EntityDeathEvent[HIGHEST]) The mob that died isn't known! Is this even possible with the HIGHEST priority?"
-                    ).color(NamedTextColor.DARK_GREEN)
+                            "DEBUG(EntityDeathEvent[HIGHEST]) The mob that died isn't known! " +
+                                    "This cannot normally happen in the EntityDeathEvent with priority HIGHEST! " +
+                                    "Probably an error occurred! " +
+                                    "The death of the mob has been cancelled... (UUID: " + uuid + "). "
+                    ).color(NamedTextColor.RED)
             );
         }
     }
